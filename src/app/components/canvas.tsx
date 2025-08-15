@@ -1,13 +1,5 @@
 "use client";
 
-import {
-  Layer,
-  Stage,
-  Image as KonvaImage,
-  Text,
-  Line,
-  Transformer,
-} from "react-konva";
 import type {
   CanvasState,
   EditingText,
@@ -55,6 +47,15 @@ const Canvas = ({
   stageRef: RefObject<any>;
   transformerRef: RefObject<any>
 }) => {
+
+const {
+  Layer,
+  Stage,
+  Image: KonvaImage,
+  Text,
+  Line,
+  Transformer,
+} = require("react-konva");
 
   useEffect(() => {
     if (
