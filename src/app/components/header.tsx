@@ -114,18 +114,16 @@ const Header = ({
   }, [canvasState]);
 
   return (
-    <header className="bg-white border-b border-gray-200 px-6 py-4">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">
-          Image Text Composer
-        </h1>
+   <header className="bg-white border-b border-gray-200 px-6 py-4">
+      <div className="flex items-center justify-between gap-8">
+        <h1 className="text-2xl font-bold text-gray-900 flex-shrink-0">Image Text Composer</h1>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition-colors"
           >
-            <Upload size={18} />
+            <Upload size={16} />
             Upload PNG
           </button>
 
@@ -136,63 +134,59 @@ const Header = ({
                 canvasWidth: 800,
                 canvasHeight: 600,
                 scale: 1,
-              });
-              setDraggedImageUrl(null);
-              setTextLayers([]);
-              setSelectedLayerId(null);
-              setHistory([]);
-              setHistoryIndex(-1);
-              textRefs.current = {};
-              localStorage.removeItem("image-text-composer-state");
+              })
+              setDraggedImageUrl(null)
+              setTextLayers([])
+              setSelectedLayerId(null)
+              setHistory([])
+              setHistoryIndex(-1)
+              textRefs.current = {}
+              localStorage.removeItem("image-text-composer-state")
             }}
-            className="flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-600 text-white text-sm rounded-md hover:bg-gray-700 transition-colors"
           >
-            <RotateCcw size={18} />
+            <RotateCcw size={16} />
             Reset
           </button>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-0.5 ml-1">
             <button
               onClick={undo}
               disabled={historyIndex <= 0}
-              className={`p-2 rounded-lg transition-colors ${
+              className={`p-1.5 rounded-md transition-colors ${
                 historyIndex > 0
                   ? "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                   : "text-gray-300 cursor-not-allowed"
               }`}
               title={`Undo${historyIndex > 0 ? ` (${historyIndex} steps)` : ""}`}
             >
-              <Undo size={18} />
+              <Undo size={16} />
             </button>
             <button
               onClick={redo}
               disabled={historyIndex >= history.length - 1}
-              className={`p-2 rounded-lg transition-colors ${
+              className={`p-1.5 rounded-md transition-colors ${
                 historyIndex < history.length - 1
                   ? "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                   : "text-gray-300 cursor-not-allowed"
               }`}
               title={`Redo${historyIndex < history.length - 1 ? ` (${history.length - historyIndex - 1} steps)` : ""}`}
             >
-              <Redo size={18} />
+              <Redo size={16} />
             </button>
           </div>
 
           <button
             onClick={exportToPNG}
             disabled={!canvasState.backgroundImage}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-md transition-colors ml-1 ${
               canvasState.backgroundImage
                 ? "bg-green-600 text-white hover:bg-green-700"
                 : "bg-gray-300 text-gray-500 cursor-not-allowed"
             }`}
-            title={
-              canvasState.backgroundImage
-                ? "Export as PNG"
-                : "Upload an image first"
-            }
+            title={canvasState.backgroundImage ? "Export as PNG" : "Upload an image first"}
           >
-            <Download size={18} />
+            <Download size={16} />
             Export PNG
           </button>
         </div>

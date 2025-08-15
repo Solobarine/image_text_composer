@@ -13,6 +13,7 @@ import type {
 } from "./types";
 import { Loader2 } from "lucide-react";
 import loadGoogleFont from "./helper/loadFont";
+import { LoaderSnippet } from "./components/loader";
 
 const TextEditor = dynamic(() => import("./components/textEditor"), {
   ssr: false,
@@ -279,12 +280,7 @@ export default function ImageTextComposer() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {!fontsLoaded && (
-        <div className="absolute w-fit px-6 py-1 rounded-md top-2 left-1/2 -translate-x-1/2 bg-black/30 grid place-content-center">
-          <div className="flex gap-4">
-            <Loader2 className="animate-spin mx-auto" size={30} />
-            <p className="text-lg font-semibold">Loading Fonts...</p>
-          </div>
-        </div>
+      <LoaderSnippet /> 
       )}
       <Header
         fileInputRef={fileInputRef}
@@ -314,7 +310,7 @@ export default function ImageTextComposer() {
               <Canvas
                 canvasState={canvasState}
                 stageRef={stageRef}
-		transformerRef={transformerRef}
+                transformerRef={transformerRef}
                 setHistory={setHistory}
                 setTextLayers={setTextLayers}
                 setHistoryIndex={setHistoryIndex}
