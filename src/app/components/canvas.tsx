@@ -29,7 +29,7 @@ const Canvas = ({
   historyIndex,
   setHistory,
   stageRef,
-  transformerRef
+  transformerRef,
 }: {
   canvasState: CanvasState;
   setSelectedLayerId: Dispatch<SetStateAction<string | null>>;
@@ -45,17 +45,16 @@ const Canvas = ({
   isUndoRedoing: boolean;
   setHistory: Dispatch<SetStateAction<HistoryState[]>>;
   stageRef: RefObject<any>;
-  transformerRef: RefObject<any>
+  transformerRef: RefObject<any>;
 }) => {
-
-const {
-  Layer,
-  Stage,
-  Image: KonvaImage,
-  Text,
-  Line,
-  Transformer,
-} = require("react-konva");
+  const {
+    Layer,
+    Stage,
+    Image: KonvaImage,
+    Text,
+    Line,
+    Transformer,
+  } = require("react-konva");
 
   useEffect(() => {
     if (
@@ -145,8 +144,8 @@ const {
 
                     let snapX = node.x();
                     let snapY = node.y();
-                    let showVertical = null;
-                    let showHorizontal = null;
+                    let showVertical: number | null = null;
+                    let showHorizontal:number | null = null;
 
                     if (Math.abs(elementCenterX - centerX) < snapThreshold) {
                       snapX = centerX - width / 2;
